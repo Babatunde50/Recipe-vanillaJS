@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+* { 
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    width: 100vw;
+    padding: 1rem 0.5rem;
+    background: #cf0056;
+}
+
+#header-title {
+    margin: 0;
+    color: white;
+    text-align: center;
+}
+
+main {
+    padding: 1rem;
+}
+
+
+.btn {
+    padding: 0.5rem;
+    background: rgba(0,0,0,0.2);
+    border-radius: 0.4rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+.btn:hover,
+.btn:active,
+.btn:focus {
+    border-bottom: 2px solid #cf0056;
+}
+
+
+.btn-recipe {
+    background: #cf0056;
+    padding: 0.5rem 1rem;
+    border: 2px solid #cf0056;
+}
+
+.btn-recipe:hover,
+.btn-recipe:active {
+    background: white;
+    color: #cf0056;
+    outline: none;
+}

@@ -1,0 +1,79 @@
+#add { 
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 1rem;
+}
+
+.input {
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid black;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    margin: 1rem 0;
+}
+
+.input:hover,
+.input:active,
+.input:focus,
+.textarea:hover,
+.textarea:active,
+.textarea:focus {
+    outline: none;
+    border-bottom: 2px solid #cf0056;
+    background: rgb(232, 240, 254);
+}
+
+.textarea {
+    display: block;
+    padding: 1rem;
+    border: none;
+    border-bottom: 2px solid black;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    font-size: 1rem;
+    margin: 1rem 0;
+    font-size: 1rem;
+}
+
+.ingredients {
+    text-align: left;
+}
+
+.ingredient-display {
+    margin: 0;
+}
+
+.ingredient-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ingredient-item {
+    padding: 1rem 0;
+
+}
+
+.ingredient-delete {
+    text-align: right;
+    color: #cf0056;
+    cursor: pointer;
+    padding-left: 1rem;
+}
+
+.input-ing {
+    display: inline-block;
+    width: 70%;
+}
+
+.delete {
+    text-align: left;
+}
+
+
+
+
+
