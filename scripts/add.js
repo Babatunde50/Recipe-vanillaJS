@@ -5,6 +5,16 @@ const addIngredientButton = document.getElementById('btn-add');
 const ingredientInput = document.getElementById('add-ingredient');
 const addRecipeBtn = document.getElementById('add-recipe');
 
+
+class Recipe {
+	constructor(title, description, ingredients ) {
+		this.title = title;
+		this.description = description;
+		this.ingredients = ingredients
+
+	}
+}
+
 const createIngredient = ingName => {
 	const li = document.createElement('li');
 	li.className = 'ingredient-item';
@@ -31,22 +41,16 @@ const addRecipeHandler = () => {
 	}));
 
 	const recipes = JSON.parse(localStorage.getItem('allRecipes'));
+	const recipe = new Recipe(recipeName, descriptionName, ingredients);
 	if (recipes) {
-		recipes.unshift({
-			name: recipeName,
-			description: descriptionName,
-			ingredients,
-		});
+		recipes.unshift(recipe);
 		localStorage.setItem('allRecipes', JSON.stringify(recipes));
 	} else {
+		console.log(recipe)
 		localStorage.setItem(
 			'allRecipes',
 			JSON.stringify([
-				{
-					name: recipeName,
-					description: descriptionName,
-					ingredients,
-				},
+				recipe
 			])
 		);
 	}

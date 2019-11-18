@@ -3,10 +3,10 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Add New Recipe</title>
-        <link rel="stylesheet" href="./styles/shared.css" />
-        <link rel="stylesheet" href="./styles/add.css">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Add New Recipe</title>
+		<link rel="stylesheet" href="./styles/shared.css" />
+		<link rel="stylesheet" href="./styles/add.css" />
 		<script src="./scripts/global.js" defer></script>
 		<script src="./scripts/add.js" defer></script>
 	</head>
@@ -16,22 +16,21 @@
 		</header>
 		<main>
 			<section id="add">
-				<input type="text" id="title" class="input" placeholder="Recipe Name">
+				<input type="text" id="title" class="input" placeholder="Recipe Name" />
 				<textarea rows="5" id="description" class="textarea" placeholder="Description"></textarea>
 				<div class="ingredients">
 					<h3 class="ingredient-display">Ingredients</h3>
-					<ul class="ingredient-list">
-
-					</ul>
+					<p>Please Start Adding Some Recipe</p>
+					<ul class="ingredient-list"></ul>
 					<div>
-                        <input type="text" id="add-ingredient" class="input input-ing" placeholder="Add Ingredient" />  
-                        <button type="button" id="btn-add" class="btn btn-recipe">Add</button>
-                    </div>
-                </div>
-                <div class="delete">
-                    <h3>Submission Zone</h3>
-                    <button id="add-recipe" class="btn btn-recipe">Add Recipe</button>
-                </div>
+						<input type="text" id="add-ingredient" class="input input-ing" placeholder="Add Ingredient" />
+						<button type="button" id="btn-add" class="btn btn-recipe">Add</button>
+					</div>
+				</div>
+				<div class="delete">
+					<h3>Submission Zone</h3>
+					<button id="add-recipe" class="btn btn-recipe">Add Recipe</button>
+				</div>
 			</section>
 		</main>
 	</body>
