@@ -6,24 +6,46 @@ const ingredientInput = document.getElementById('add-ingredient');
 const addRecipeBtn = document.getElementById('add-recipe');
 
 
+const getRecipes = () => {
+	const recipes = JSON.parse(localStorage.getItem('allRecipes'));
+	if (!recipes) return [];
+	return recipes;
+};
+
+const RECIPES = getRecipes();
+
 class Recipe {
 	constructor(title, description, ingredients ) {
 		this.title = title;
 		this.description = description;
 		this.ingredients = ingredients
-
+		this.id = Math.random()
 	}
 }
 
-const createIngredient = ingName => {
+
+const createIngredient = (ingName, checked=false) => {
 	const li = document.createElement('li');
 	li.className = 'ingredient-item';
 	li.innerHTML = `
-        <input type="checkbox"> 
+        <input type="checkbox" checked=${checked} > 
         <span id="ing-name">${ingName}</span> <span class="ingredient-delete"> Remove </span>
     `;
 	ingredientList.appendChild(li);
 };
+
+const id = location.hash.slice(1)
+
+
+if(id) {
+	const recipe = RECIPES.find(recipe => +recipe.id === +id)
+	const { title, description, ingredients } = recipe;
+	titleInput.value = title;
+	descriptionInput.value = description;
+	for(const { name, available } of ingredients) {
+		createIngredient(name, available)
+	}
+}
 
 const addIngredientHandler = () => {
 	const ingName = ingredientInput.value;
