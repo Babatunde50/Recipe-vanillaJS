@@ -1,5 +1,6 @@
 const addRecipeBtn = document.getElementById('add-recipe');
 const recipeList = document.querySelector('.recipe-list');
+const searchInput = document.querySelector('.search-input');
 
 const getRecipes = () => {
 	const recipes = JSON.parse(localStorage.getItem('allRecipes'));
@@ -9,11 +10,11 @@ const getRecipes = () => {
 
 const RECIPES = getRecipes();
 
-const createAndRenderRecipesElem = () => {
-	if (RECIPES.length < 1) return;
+const createAndRenderRecipesElem = (RECIPES) => {
+	if (RECIPES.length < 1) return recipeList.innerHTML = "<p> No recipe found. <p>" ;
+	recipeList.innerHTML = ""
 	for (const { title, ingredients, id } of RECIPES) {
 		const ingredientStatus = ingredients.every(ing => ing.available);
-		console.log(name);
 		const recipe = document.createElement('div');
 		recipe.className = 'recipe';
 		recipe.id = id;
@@ -29,21 +30,28 @@ const createAndRenderRecipesElem = () => {
 	}
 };
 
-createAndRenderRecipesElem();
+createAndRenderRecipesElem(RECIPES);
 
-const allRecipes = document.querySelectorAll(".recipe")
+const allRecipes = document.querySelectorAll('.recipe');
 
 const addRecipeHandler = () => {
 	location.assign('/add-recipe.html');
 };
 
-const editRecipeHandler = (event) => {
+const editRecipeHandler = event => {
 	const id = event.target.id;
 	location.assign(`/add-recipe.html#${id}`);
-}
+};
 
-for(const recipe of allRecipes) {
-	recipe.addEventListener("click", editRecipeHandler)
+const filterRecipeHandler = event => {
+	const search = event.target.value;
+	recipe = RECIPES.filter(recipe => recipe.title.toLowerCase().includes(search.toLowerCase()));
+	createAndRenderRecipesElem(recipe);
+};
+
+for (const recipe of allRecipes) {
+	recipe.addEventListener('click', editRecipeHandler);
 }
 
 addRecipeBtn.addEventListener('click', addRecipeHandler);
+searchInput.addEventListener('input', filterRecipeHandler);

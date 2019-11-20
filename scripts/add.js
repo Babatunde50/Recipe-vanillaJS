@@ -5,7 +5,6 @@ const addIngredientButton = document.getElementById('btn-add');
 const ingredientInput = document.getElementById('add-ingredient');
 const addRecipeBtn = document.getElementById('add-recipe');
 
-
 const getRecipes = () => {
 	const recipes = JSON.parse(localStorage.getItem('allRecipes'));
 	if (!recipes) return [];
@@ -15,36 +14,41 @@ const getRecipes = () => {
 const RECIPES = getRecipes();
 
 class Recipe {
-	constructor(title, description, ingredients ) {
+	constructor(title, description, ingredients) {
 		this.title = title;
 		this.description = description;
-		this.ingredients = ingredients
-		this.id = Math.random()
+		this.ingredients = ingredients;
+		this.id = Math.random();
 	}
 }
 
+const deleteIngredientHandler = event => {
+	event.target.parentElement.remove();
+};
 
-const createIngredient = (ingName, checked=false) => {
+const createIngredient = (ingName, checked = false) => {
 	const li = document.createElement('li');
 	li.className = 'ingredient-item';
 	li.innerHTML = `
-        <input type="checkbox" checked=${checked} > 
+        <input type="checkbox"> 
         <span id="ing-name">${ingName}</span> <span class="ingredient-delete"> Remove </span>
-    `;
+	`;
+	checked && li.querySelector('input').setAttribute('checked', checked);
 	ingredientList.appendChild(li);
+	li.querySelector('.ingredient-delete').addEventListener('click', deleteIngredientHandler);
 };
 
-const id = location.hash.slice(1)
+const id = location.hash.slice(1);
 
-
-if(id) {
-	const recipe = RECIPES.find(recipe => +recipe.id === +id)
+if (id) {
+	const recipe = RECIPES.find(recipe => +recipe.id === +id);
 	const { title, description, ingredients } = recipe;
 	titleInput.value = title;
 	descriptionInput.value = description;
-	for(const { name, available } of ingredients) {
-		createIngredient(name, available)
+	for (const { name, available } of ingredients) {
+		createIngredient(name, available);
 	}
+	addRecipeBtn.textContent = 'Edit Recipe';
 }
 
 const addIngredientHandler = () => {
@@ -65,16 +69,15 @@ const addRecipeHandler = () => {
 	const recipes = JSON.parse(localStorage.getItem('allRecipes'));
 	const recipe = new Recipe(recipeName, descriptionName, ingredients);
 	if (recipes) {
-		recipes.unshift(recipe);
-		localStorage.setItem('allRecipes', JSON.stringify(recipes));
+		if (id) {
+			const recipeIndex = recipes.findIndex(recipe => +recipe.id === +id);
+			recipes[recipeIndex] = recipe;
+		} else {
+			recipes.push(recipe);
+		}
+		localStorage.setItem('allRecipes', JSON.stringify(recipes.reverse()));
 	} else {
-		console.log(recipe)
-		localStorage.setItem(
-			'allRecipes',
-			JSON.stringify([
-				recipe
-			])
-		);
+		localStorage.setItem('allRecipes', JSON.stringify([recipe]));
 	}
 	location.assign('/index.html');
 };
