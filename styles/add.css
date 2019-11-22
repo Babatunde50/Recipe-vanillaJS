@@ -71,6 +71,10 @@
     width: 70%;
 }
 
+.add {
+    text-align: left;
+}
+
 .delete {
     text-align: left;
 }

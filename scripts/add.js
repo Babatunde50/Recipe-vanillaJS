@@ -4,6 +4,7 @@ const ingredientList = document.querySelector('.ingredient-list');
 const addIngredientButton = document.getElementById('btn-add');
 const ingredientInput = document.getElementById('add-ingredient');
 const addRecipeBtn = document.getElementById('add-recipe');
+const deleteRecipeBtn = document.getElementById("delete-recipe")
 
 const getRecipes = () => {
 	const recipes = JSON.parse(localStorage.getItem('allRecipes'));
@@ -49,6 +50,8 @@ if (id) {
 		createIngredient(name, available);
 	}
 	addRecipeBtn.textContent = 'Edit Recipe';
+} else {
+	deleteRecipeBtn.parentElement.innerHTML = ''
 }
 
 const addIngredientHandler = () => {
@@ -82,5 +85,12 @@ const addRecipeHandler = () => {
 	location.assign('/index.html');
 };
 
+const deleteRecipeHandler = () => {
+	const remainingRecipes = RECIPES.filter(recipe => +recipe. id !== +id)
+	localStorage.setItem("allRecipes", JSON.stringify(remainingRecipes) )
+	location.assign("/index.html")
+}
+
 addIngredientButton.addEventListener('click', addIngredientHandler);
 addRecipeBtn.addEventListener('click', addRecipeHandler);
+deleteRecipeBtn.addEventListener("click", deleteRecipeHandler)
